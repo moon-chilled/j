@@ -53,7 +53,7 @@ de =: {{en =: en cons~ y cons~ intern x }}
 as =: ($:cd)`([:ca]) @. ((2*0j1=])+(= caa))
 lu =: cd@as
 sn =: intern@>"0'lambda';'if';'quote';'set';'def'
-sv =: (0j2+(cons cd))`((ev cadd)`(ev caddd)@.(0j1=(ev cad)))`([:cad])`([:cd(as~ cad)rd(ev cadd))`(([:sym_name@cad]) de (ev cadd))`ap
+sv =: (0j2+(cons cd))`((ev cadd)`(ev caddd)@.(0j1=(ev cad)))`([:cad])`([:cd(as~ cad)rd(ev cadd))`([: cda ([:sym_name@cad]) de (ev cadd))`ap
 al =: {{ b ev~e cons~ cons/"1 y,.~la p['e p b' =. la x }}
 ap =: (ev ca) (er`er`er`{{(cb x)@.0 y}}`al @. ([:t[)) (ev"0 la@cd)
 ev =: ]`(lu~)`(sv@.([:sn&i.@ca]))`]`] @. ([:t])

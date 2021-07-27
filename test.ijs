@@ -9,4 +9,11 @@ GC en
 assert z > #conses
 assert 11 = en ev (en lu~ intern'f') cons 6 cons 0j1
 assert 333 = en ev (en lu~ intern'g') cons 333 cons 0j1
+en ev (intern'def') cons (intern'x') cons ((intern'cons') cons 5 cons 6 cons 0j1) cons 0j1
+assert 6 = en ev (intern'cdr') cons (intern'x') cons 0j1
+en ev (intern'rplacd') cons (intern'x') cons 7 cons 0j1
+assert 7 = en ev (intern'cdr') cons (intern'x') cons 0j1
+en ev (intern'set') cons (intern'x') cons 14 cons 0j1
+assert 14 = en ev intern'x'
+
 echo fm en
