@@ -4,7 +4,7 @@ NB. nj2 is cons n     I do not like this
 NB. nj3 is builtin function n
 NB. nj4 is user-defined function n.  (env . (parm . body))
 NB. todo reader, better error messages
-NB. todo macros? mutation? better gc?
+NB. todo macros? better gc?
 
 t =: {:@+. : [: NB.type
 c =: {.@+. : [: NB.content
@@ -47,16 +47,18 @@ de =: {{en =: en cons~ y cons~ intern x }}
 '*'      de nbf */   `#
 '/'      de nbf %~/@|.`(1&>.)
 '-'      de nbf -~/@|.`(1&>.)
+'rplaca' de nbf ra/`2:
+'rplacd' de nbf rd/`2:
 
 as =: ($:cd)`([:ca]) @. ((2*0j1=])+(= caa))
 lu =: cd@as
-sn =: intern@>"0'lambda';'if';'quote';'set'
-sv =: (0j2+(cons cd))`((ev cadd)`(ev caddd)@.(0j1=(ev cad)))`([:cad])`((as~ cad)rd(ev cadd))`ap
+sn =: intern@>"0'lambda';'if';'quote';'set';'def'
+sv =: (0j2+(cons cd))`((ev cadd)`(ev caddd)@.(0j1=(ev cad)))`([:cad])`([:cd(as~ cad)rd(ev cadd))`(([:sym_name@cad]) de (ev cadd))`ap
 al =: {{ b ev~e cons~ cons/"1 y,.~la p['e p b' =. la x }}
 ap =: (ev ca) (er`er`er`{{(cb x)@.0 y}}`al @. ([:t[)) (ev"0 la@cd)
 ev =: ]`(lu~)`(sv@.([:sn&i.@ca]))`]`] @. ([:t])
 
-GC =: {{
+GC =: {{ NB. todo more traditional design? (freelist, compact only occasionally)
  b =. 0 #~ # h =. (c conses) * p =. 2 4 e.~t conses
  b =. 1 (c y)} b
  b =. h {{ 1 (,y#x)} y}}^:_ b  NB.todo improve this.  Maybe maintain two bitmaps, one for elements that were just marked and one with all the markings, so performance is in the same computational ballpark as traditional tracing
