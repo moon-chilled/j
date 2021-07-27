@@ -21,8 +21,8 @@ conses =: i.0 2          NB. first col is car, second cdr
 cons =: {{ (conses =: conses , x,y) ] 2 j.~#conses }}
 ca =: {{conses{~<0,~c y}}
 cd =: {{conses{~<1,~c y}}
-ra =: {{x[conses=:x(<0,~c y)}conses}} NB. rplaca
-rd =: {{x[conses=:x(<1,~c y)}conses}} NB. will this happen in place?
+ra =: {{x[conses=:y(<0,~c x)}conses}} NB. rplaca
+rd =: {{x[conses=:y(<1,~c x)}conses}} NB. will this happen in place?
 caa =: ca@ca
 cad =: ca@cd
 cda =: cd@ca
@@ -55,9 +55,10 @@ de =: {{en =: en cons~ y cons~ intern x }}
 '/'      de nbf %~/@|.`(1&>.)
 '-'      de nbf -~/@|.`(1&>.)
 
-lu =: ($:cd)`([:cda]) @. ((2*0j1=])+(= caa)) NB. eg: en lu~ intern'nil'
-sn =: intern@>"0'lambda';'if';'quote'
-sv =: (0j2+(cons cd))`((ev cadd)`(ev caddd)@.(0j1=(ev cad)))`([:cad])`ap
+as =: ($:cd)`([:ca]) @. ((2*0j1=])+(= caa))
+lu =: cd@as
+sn =: intern@>"0'lambda';'if';'quote';'set'
+sv =: (0j2+(cons cd))`((ev cadd)`(ev caddd)@.(0j1=(ev cad)))`([:cad])`((as~ cad)rd(ev cadd))`ap
 al =: {{ b ev~e cons~ cons/"1 y,.~la p['e p b' =. la x }}
 ap =: (ev ca) (er`er`er`{{(cb x)@.0 y}}`al @. ([:t[)) (ev"0 la@cd)
 ev =: ]`(lu~)`(sv@.([:sn&i.@ca]))`]`] @. ([:t])
