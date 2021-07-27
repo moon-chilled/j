@@ -10,11 +10,9 @@ t =: {:@+. : [: NB.type
 c =: {.@+. : [: NB.content
 
 syms =: 'nil';,'t'
-intern =: {{
- i =. syms i. y=.<,y
+intern =: {{ i =. syms i. y=.<,y
  if. i = #syms do. syms =: syms , y end.
- i j.1
-}}
+ i j.1 }}
 sym_name =: {{>syms{~c y}}
 
 conses =: i.0 2          NB. first col is car, second cdr
@@ -23,12 +21,7 @@ ca =: {{conses{~<0,~c y}}
 cd =: {{conses{~<1,~c y}}
 ra =: {{x[conses=:y(<0,~c x)}conses}} NB. rplaca
 rd =: {{x[conses=:y(<1,~c x)}conses}} NB. will this happen in place?
-caa =: ca@ca
-cad =: ca@cd
-cda =: cd@ca
-cdd =: cd@cd
-cadd =: cad@cd
-caddd =: cadd@cd
+(caa =: ca@ca) (cad =: ca@cd) (cda =: cd@ca) (cdd =: cd@cd) (cadd =: cad@cd) (caddd =: cadd@cd)
 er =: {{'lisp'13!:8]255}}
 la =: ''"_`(ca,$:@cd) @. (0j1&~:)
 
