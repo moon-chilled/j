@@ -9,10 +9,10 @@ NB. nj4 is user-defined function n.  (env . (parm . body))
 NB. todo reader, better error messages
 NB. todo macros?
 
-CFRAG =: 0.8
+CFRAG =: 0.8    NB.compact if fragmentation above...
 
-t =: {:@+. : [: NB.type
-c =: {.@+. : [: NB.content
+t =: {:@+. : [: NB.type/tag
+c =: {.@+. : [: NB.content (~unbox)
 
 pick =: [. @. (#. @: (].`:0))
 
@@ -41,7 +41,7 @@ rd =: {{x[conses=:y(<1,~c x)}conses}} NB. will this happen in place?
 er =: {{'lisp'13!:8]255}}
 la =: ''"_`(ca,$:@cd) @. (0j1&~:)
 
-bf =: i.0 2      NB. content; arity
+bf =: i.0 2      NB. content; arity, which is
 cb =: {{ bf {~ c y }}     NB. a function that, when applied to the argument list
 nbf =: {{ (bf=:bf,y) ] 3 j.~#bf }}         NB. returns its length iff the function is willing to accept those args
 
