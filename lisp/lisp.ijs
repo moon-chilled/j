@@ -54,10 +54,10 @@ de =: {{en =: en cons~ y cons~ intern x }}
 'cons'   de nbf cons/`2:
 'car'    de nbf ca@{.`1:
 'cdr'    de nbf cd@{.`1:
-'symbolp'de nbf (1 j.~1&=@t@{.)`1:
-'consp'  de nbf (1 j.~2&=@t@{.)`1:
-'functionp'de nbf (1 j.~3 4&(e.~)@t@{.)`1:
-'numberp'de nbf (1 j.~0&=@t@{.)`1:
+'symbolp'de nbf (1 j.~1=t@{.)`1:
+'consp'  de nbf (1 j.~2=t@{.)`1:
+'functionp'de nbf (1 j.~3 4 e.~t@{.)`1:
+'numberp'de nbf (1 j.~0=t@{.)`1:
 'eq'     de nbf (1 j.~=/)`2:
 '+'      de nbf +/   `#
 '*'      de nbf */   `#

@@ -7,6 +7,9 @@ assert 6 = en ev ((intern'lambda') cons (0j1 cons~ intern'x') cons ((intern'+') 
 z =. #conses
 GC en
 assert z > #conses
+'ff' de en ev intern'f'
+assert (intern't') = en ev (intern'eq') cons (intern'f') cons (intern'ff') cons 0j1
+assert 7 = en ev (intern'if') cons ((intern'functionp') cons (intern'f') cons 0j1) cons 7 cons 2 cons 0j1
 assert 11 = en ev (en lu~ intern'f') cons 6 cons 0j1
 assert 333 = en ev (en lu~ intern'g') cons 333 cons 0j1
 en ev (intern'def') cons (intern'x') cons ((intern'cons') cons 5 cons 6 cons 0j1) cons 0j1
