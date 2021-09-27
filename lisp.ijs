@@ -1,3 +1,6 @@
+NB. lisp: abstract, verbose, deduplicated
+NB. apl: concrete, terse, repetitive
+
 NB. nj0 is number n
 NB. nj1 is symbol n.  0j1 is nil
 NB. nj2 is cons n     I do not like this
@@ -21,7 +24,7 @@ ca =: {{conses{~<0,~c y}}
 cd =: {{conses{~<1,~c y}}
 ra =: {{x[conses=:y(<0,~c x)}conses}} NB. rplaca
 rd =: {{x[conses=:y(<1,~c x)}conses}} NB. will this happen in place?
-(caa =: ca@ca) (cad =: ca@cd) (cda =: cd@ca) (cdd =: cd@cd) (cadd =: cad@cd) (caddd =: cadd@cd)
+(caa =: ca@ca) (cad =: ca@cd) (cda =: cd@ca) (cadd =: cad@cd) (caddd =: cadd@cd)
 er =: {{'lisp'13!:8]255}}
 la =: ''"_`(ca,$:@cd) @. (0j1&~:)
 
@@ -58,10 +61,10 @@ al =: {{ b ev~e cons~ cons/"1 y,.~la p['e p b' =. la x }}
 ap =: (ev ca) (er`er`er`{{(cb x)@.0 y}}`al @. ([:t[)) (ev"0 la@cd)
 ev =: ]`(lu~)`(sv@.([:sn&i.@ca]))`]`] @. ([:t])
 
-GC =: {{ NB. todo more traditional design? (freelist, compact only occasionally)
+GC =: {{ NB. todo freelist, compact only for great fragmentation?
  b =. 0 #~ # h =. (c conses) * p =. 2 4 e.~t conses
  b =. 1 (c y)} b
- b =. h {{ 1 (,y#x)} y}}^:_ b  NB.todo improve this.  Maybe maintain two bitmaps, one for elements that were just marked and one with all the markings, so performance is in the same computational ballpark as traditional tracing
+ b =. h {{ 1 (,y#x)} y}}^:_ b
  d =. +/\-.b
  conses =: tc - d{~c (tc=.b#conses)*.b#p
  en =: en - d{~c en }}
