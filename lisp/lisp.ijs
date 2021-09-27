@@ -7,7 +7,9 @@ NB. nj2 is cons n     I do not like this
 NB. nj3 is builtin function n
 NB. nj4 is user-defined function n.  (env . (parm . body))
 NB. todo reader, better error messages
-NB. todo macros? better gc?
+NB. todo macros?
+
+CFRAG =: 0.8
 
 t =: {:@+. : [: NB.type
 c =: {.@+. : [: NB.content
@@ -23,7 +25,14 @@ intern =: {{ i =. syms i. y=.<,y
 sym_name =: {{>syms{~c y}}
 
 conses =: i.0 2          NB. first col is car, second cdr
-cons =: {{ (conses =: conses , x,y) ] 2 j.~#conses }}
+fl =: _1
+cons =: {{
+ if. _1 = fl do. (conses =: conses , x,y) ] 2 j.~#conses
+ else. fl=: ca r=. fl
+       r ra x
+       r rd y
+       r j. 2 end. }}
+uncons =: {{ fl =: y ra fl }}
 ca =: {{conses{~<0,~c y}}
 cd =: {{conses{~<1,~c y}}
 ra =: {{x[conses=:y(<0,~c x)}conses}} NB. rplaca
@@ -65,10 +74,11 @@ al =: {{ b ev~e cons~ cons/"1 y,.~la p['e p b' =. la x }}
 ap =: (ev ca) (er`er`er`{{(cb x)@.0 y}}`al @. (t M~)) (ev"0 la@cd)
 ev =: ]`(lu~)`(sv@.(]sn&i.@ca))`]`] @. (]t)
 
-GC =: {{ NB. todo freelist, compact only for great fragmentation?
+GC =: {{
  b =. 0 #~ # h =. (c conses) * p =. 2 4 e.~t conses
  b =. 1 (c y)} b
  b =. h {{ 1 (,y#x)} y}}^:_ b
- d =. +/\-.b
- conses =: tc - d{~c (tc=.b#conses)*.b#p
- en =: en - d{~c en }}
+ if. CFRAG < (+/%#)b do. uncons"0 I.-.b
+ else. d =. +/\-.b
+       conses =: tc - d{~c (tc=.b#conses)*.b#p
+       en =: en - d{~c en end. }}
