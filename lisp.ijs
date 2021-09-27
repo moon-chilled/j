@@ -12,6 +12,10 @@ NB. todo macros? better gc?
 t =: {:@+. : [: NB.type
 c =: {.@+. : [: NB.content
 
+pick =: [. @. (#. @: (].`:0))
+
+M =: [:(]: ]: ]) NB.monad
+
 syms =: 'nil';,'t'
 intern =: {{ i =. syms i. y=.<,y
  if. i = #syms do. syms =: syms , y end.
@@ -53,13 +57,13 @@ de =: {{en =: en cons~ y cons~ intern x }}
 'rplaca' de nbf ra/`2:
 'rplacd' de nbf rd/`2:
 
-as =: ($:cd)`([:ca]) @. ((2*0j1=])+(= caa))
+as =: ($:cd)`(]ca) pick ((0j1=])`(= caa))
 lu =: cd@as
 sn =: intern@>"0'lambda';'if';'quote';'set';'def'
-sv =: (0j2+(cons cd))`((ev cadd)`(ev caddd)@.(0j1=(ev cad)))`([:cad])`([:cd(as~ cad)rd(ev cadd))`([: cda ([:sym_name@cad]) de (ev cadd))`ap
+sv =: (0j2+(cons cd))`((ev cadd)`(ev caddd)@.(0j1=(ev cad)))`(]cad)`([:cd(as~ cad)rd(ev cadd))`([: cda (]sym_name@cad) de (ev cadd))`ap
 al =: {{ b ev~e cons~ cons/"1 y,.~la p['e p b' =. la x }}
-ap =: (ev ca) (er`er`er`{{(cb x)@.0 y}}`al @. ([:t[)) (ev"0 la@cd)
-ev =: ]`(lu~)`(sv@.([:sn&i.@ca]))`]`] @. ([:t])
+ap =: (ev ca) (er`er`er`{{(cb x)@.0 y}}`al @. (t M~)) (ev"0 la@cd)
+ev =: ]`(lu~)`(sv@.(]sn&i.@ca))`]`] @. (]t)
 
 GC =: {{ NB. todo freelist, compact only for great fragmentation?
  b =. 0 #~ # h =. (c conses) * p =. 2 4 e.~t conses
