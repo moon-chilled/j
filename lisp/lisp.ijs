@@ -38,7 +38,7 @@ cd =: {{conses{~<1,~c y}}
 ra =: {{x[conses=:y(<0,~c x)}conses}} NB. rplaca
 rd =: {{x[conses=:y(<1,~c x)}conses}} NB. will this happen in place?
 (caa =: ca@ca) (cad =: ca@cd) (cda =: cd@ca) (cadd =: cad@cd) (caddd =: cadd@cd)
-er =: {{'lisp'13!:8]255}}
+er =: {{'lisp'13!:8]255}}M
 la =: ''"_`(ca,$:@cd) @. (0j1&~:)
 
 bf =: i.0 2      NB. content; arity, which is
