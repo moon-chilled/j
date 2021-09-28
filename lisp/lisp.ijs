@@ -78,7 +78,7 @@ GC =: {{
  b =. 0 #~ # h =. (c conses) * p =. 2 4 e.~t conses
  b =. 1 (c y)} b
  b =. h {{ 1 (,y#x)} y}}^:_ b
- if. CFRAG < (+/%#)b do. uncons"0 I.-.b
+ if. CFRAG < (+/%#)b do. uncons"0 I.-.b [ fl =: _1
  else. d =. +/\-.b
        conses =: tc - d{~c (tc=.b#conses)*.b#p
        en =: en - d{~c en end. }}

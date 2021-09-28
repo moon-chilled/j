@@ -18,5 +18,12 @@ en ev (intern'rplacd') cons (intern'x') cons 7 cons 0j1
 assert 7 = en ev (intern'cdr') cons (intern'x') cons 0j1
 en ev (intern'set') cons (intern'x') cons 14 cons 0j1
 assert 14 = en ev intern'x'
+GC en
+assert 5 = ca 5 cons 7
+GC en
+GC en
+x =. 5 cons 7
+y =. 6 cons 9
+assert 5 = ca x
 
 echo fm en
