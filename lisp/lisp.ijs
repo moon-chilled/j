@@ -33,10 +33,8 @@ cons =: {{
        r rd y
        r j. 2 end. }}
 uncons =: {{ fl =: y ra fl }}
-ca =: {{conses{~<0,~c y}}
-cd =: {{conses{~<1,~c y}}
-ra =: {{x[conses=:y(<0,~c x)}conses}} NB. rplaca
-rd =: {{x[conses=:y(<1,~c x)}conses}} NB. will this happen in place?
+(ca =: {{conses{~<0,~c y}})  (ra =: {{x[conses=:y(<0,~c x)}conses}})  NB. car; rplaca
+(cd =: {{conses{~<1,~c y}})  (rd =: {{x[conses=:y(<1,~c x)}conses}})  NB. will the latter happen in place?
 (caa =: ca@ca) (cad =: ca@cd) (cda =: cd@ca) (cadd =: cad@cd) (caddd =: cadd@cd)
 er =: {{'lisp'13!:8]255}}M
 la =: ''"_`(ca,$:@cd) @. (0j1&~:)
