@@ -16,6 +16,6 @@ wp=. {{)m
  s=. (2*xa) %~ (-xb) (+,.-) %:|d       NB. | prevents complex results; they will be filtered regardless
  r=. (d>:0) *. y > sample_y s
  r=. r *. (2 {. }.&slug)"1 0 +/2 4 8 * vx < x
- 0 ~: -/+/|:r }}
+ 0 ~: -/+/r }}
 
-NB. try: ' #' {~ 100 100 $ wp"1]100 %~ 100 100 #: i. 1e4
+NB. try: ' #' {~ wp"1 |."1]100 %~ 100 100 $ 100 100 #: i. 1e4
